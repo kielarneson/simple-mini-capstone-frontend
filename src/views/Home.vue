@@ -53,11 +53,14 @@ export default {
       });
     },
     createProduct: function () {
-      axios.post("http://localhost:3000/products", this.newProductParams).then((response) => {
-        console.log("Success", response.data);
-        this.products.push(response.data);
-        this.newProductParams = {};
-      });
+      axios
+        .post("http://localhost:3000/products", this.newProductParams)
+        .then((response) => {
+          console.log("Success", response.data);
+          this.products.push(response.data);
+          this.newProductParams = {};
+        })
+        .catch((error) => console.log(error.response));
     },
   },
 };

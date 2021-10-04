@@ -1,7 +1,25 @@
 <template>
   <div class="home">
-    <h1>Create New Product</h1>
-    <button v-on:click="createProduct()">Create</button>
+    <div>
+      <h1>Create New Product</h1>
+      <div>
+        Name:
+        <input type="text" v-model="newProductParams.name" />
+      </div>
+      <div>
+        Description:
+        <input type="text" v-model="newProductParams.description" />
+      </div>
+      <div>
+        Price:
+        <input type="text" v-model="newProductParams.price" />
+      </div>
+      <div>
+        Image URL:
+        <input type="text" v-model="newProductParams.image_url" />
+      </div>
+      <button v-on:click="createProduct()">Create</button>
+    </div>
     <h1>All Products</h1>
     <div v-for="product in products" v-bind:key="product.id">
       <h2>{{ product.name }}</h2>
@@ -21,6 +39,7 @@ export default {
   data: function () {
     return {
       products: [],
+      newProductParams: {},
     };
   },
   created: function () {
@@ -34,15 +53,10 @@ export default {
       });
     },
     createProduct: function () {
-      var params = {
-        name: "Test name",
-        description: "Test description",
-        price: 1,
-        image_url: "Test image.url",
-      };
-      axios.post("http://localhost:3000/products", params).then((response) => {
+      axios.post("http://localhost:3000/products", this.newProductParams).then((response) => {
         console.log("Success", response.data);
         this.products.push(response.data);
+        this.newProductParams = {};
       });
     },
   },

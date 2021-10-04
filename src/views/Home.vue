@@ -26,11 +26,28 @@
       <p>{{ product.description }}</p>
       <img :src="product.image_url" alt="" />
       <p>{{ product.price }}</p>
+      <div>
+        <button v-on:click="showProduct(product)">More Info</button>
+      </div>
     </div>
+
+    <dialog id="product-details">
+      <form method="dialog">
+        <h1>Product info</h1>
+        <p>Name: {{ currentProduct.name }}</p>
+        <p>Description: {{ currentProduct.description }}</p>
+        <p>Price: {{ currentProduct.price }}</p>
+        <button>Close</button>
+      </form>
+    </dialog>
   </div>
 </template>
 
-<style></style>
+<style>
+img {
+  width: 400px;
+}
+</style>
 
 <script>
 import axios from "axios";
@@ -40,6 +57,7 @@ export default {
     return {
       products: [],
       newProductParams: {},
+      currentProduct: {},
     };
   },
   created: function () {
@@ -61,6 +79,11 @@ export default {
           this.newProductParams = {};
         })
         .catch((error) => console.log(error.response));
+    },
+    showProduct: function (product) {
+      console.log(product);
+      this.currentProduct = product;
+      document.querySelector("#product-details").showModal();
     },
   },
 };

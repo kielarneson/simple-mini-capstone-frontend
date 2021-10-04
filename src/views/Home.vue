@@ -1,18 +1,33 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <h1>{{ message }}</h1>
+    <p>{{ message2 }}</p>
+    <h2>{{ addThree(numbers) }}</h2>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<style></style>
 
+<script>
 export default {
-  name: "Home",
-  components: {
-    HelloWorld,
+  data: function () {
+    return {
+      message: "Welcome to Vue.js!",
+      numbers: [1, 6, 9],
+    };
+  },
+  created: function () {},
+  methods: {
+    addThree: function (array) {
+      var index = 0;
+      var newNumbers = [];
+
+      while (index < array.length) {
+        newNumbers.push(array[index] + 3);
+        index += 1;
+      }
+      return newNumbers;
+    },
   },
 };
 </script>

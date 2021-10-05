@@ -93,7 +93,7 @@ export default {
     updateProduct: function (product) {
       var editProductParams = product;
       axios.patch("http://localhost:3000/products/" + product.id, editProductParams).then((response) => {
-        console.log("Success", response.data);
+        console.log("Product successfully updated", response.data);
       });
     },
     deleteProduct: function (product) {

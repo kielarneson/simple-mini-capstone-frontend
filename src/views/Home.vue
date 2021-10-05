@@ -34,12 +34,18 @@
     <dialog id="product-details">
       <form method="dialog">
         <h1>Product info</h1>
-        Name:
-        <input type="text" v-model="currentProduct.name" />
-        Description:
-        <input type="text" v-model="currentProduct.description" />
-        Price:
-        <input type="text" v-model="currentProduct.price" />
+        <div>
+          Name:
+          <input type="text" v-model="currentProduct.name" />
+        </div>
+        <div>
+          Description:
+          <input type="text" v-model="currentProduct.description" />
+        </div>
+        <div>
+          Price:
+          <input type="text" v-model="currentProduct.price" />
+        </div>
         <button v-on:click="updateProduct(currentProduct)">Update</button>
         <button v-on:click="deleteProduct(currentProduct)">Delete</button>
         <button>Close</button>
